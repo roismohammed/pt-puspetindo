@@ -48,7 +48,7 @@ export default function Sidebar() {
           </Link>
 
           <Link
-            to="/"
+            to="/" 
             className={`pl-2 hover:text-white rounded-sm hover:bg-black p-1 w-full text-black gap-2 text-1sm flex ${isActive('/penjualan')}`}
           >
             <IconShoppingBag size={21} />
