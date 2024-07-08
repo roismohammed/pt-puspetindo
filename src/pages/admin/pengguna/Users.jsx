@@ -1,5 +1,5 @@
-import Admin from '@/layouts/Admin'
-import React from 'react'
+import Admin from '@/layouts/Admin';
+import React, { useEffect, useState } from 'react';
 import {
   Table,
   TableBody,
@@ -8,14 +8,27 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table"
-import { Card } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
-import { Link } from 'react-router-dom'
-import { IconAddressBook, IconHome, IconSearch, IconUserPlus } from '@tabler/icons-react'
-import { Label } from '@/components/ui/label'
-import { Input } from '@/components/ui/input'
+} from "@/components/ui/table";
+import { Card } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
+import { IconHome, IconSearch, IconUserPlus } from '@tabler/icons-react';
+import { Input } from '@/components/ui/input';
+import axios from 'axios';
+
 export default function Users() {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    axios.get('https://dummyjson.com/users')
+      .then((res) => {
+        setData(res.data.users);
+      })
+      .catch((error) => {
+        console.error('Error fetching users:', error);
+      });
+  }, []);
+
   return (
     <Admin>
       <Card className="p-5">
@@ -27,7 +40,7 @@ export default function Users() {
 
           <div>
             <Link to={'/add-users'}>
-              <Button className="bg-slate-900 text-white  gap-2 hover:bg-slate-800 hover:text-white" variant="outline">
+              <Button className="bg-slate-900 text-white gap-2 hover:bg-slate-800 hover:text-white" variant="outline">
                 <IconUserPlus size={18} />
                 Buat Kontak
               </Button>
@@ -42,10 +55,10 @@ export default function Users() {
               <IconSearch size={16} />
             </div>
           </div>
-           
+
           <div>
             <Link>
-              <Button className="bg-slate-100 text-white  gap-2 hover:bg-slate-800 hover:text-white" variant="outline">
+              <Button className="bg-slate-100 text-white gap-2 hover:bg-slate-800 hover:text-white" variant="outline">
                 <IconUserPlus size={18} />
                 Kolom
               </Button>
@@ -57,30 +70,29 @@ export default function Users() {
           <Table>
             <TableHeader className='bg-slate-100'>
               <TableRow>
-                <TableHead className="w-[100px]">RID</TableHead>
-                <TableHead>NIK</TableHead>
-                <TableHead>Nama</TableHead>
-                <TableHead>Departemen</TableHead>
-                <TableHead>Jabatan</TableHead>
-                <TableHead>Status</TableHead>
+                <TableHead className="w-[100px]">ID</TableHead>
+                <TableHead>First Name</TableHead>
+                <TableHead>Last Name</TableHead>
+                <TableHead>Age</TableHead>
+                <TableHead>Gender</TableHead>
+                <TableHead>Email</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
-              <TableRow>
-                <TableCell className="font-medium">INV001</TableCell>
-                <TableCell>Paid</TableCell>
-                <TableCell>Credit Card</TableCell>
-                <TableCell>Credit Card</TableCell>
-                <TableCell>Credit Card</TableCell>
-                <TableCell>$250.00</TableCell>
-              </TableRow>
+              {data.map((user) => (
+                <TableRow key={user.id}>
+                  <TableCell className="font-medium">{user.id}</TableCell>
+                  <TableCell>{user.firstName}</TableCell>
+                  <TableCell>{user.lastName}</TableCell>
+                  <TableCell>{user.age}</TableCell>
+                  <TableCell>{user.gender}</TableCell>
+                  <TableCell>{user.email}</TableCell>
+                </TableRow>
+              ))}
             </TableBody>
           </Table>
         </Card>
       </Card>
-
-    </Admin >
-  )
+    </Admin>
+  );
 }
-
-
