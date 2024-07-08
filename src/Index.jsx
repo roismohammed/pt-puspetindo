@@ -26,7 +26,7 @@ export default function Index() {
                     <div className='border-bottom'>
                         <div>
                             <p className='text-sm flex gap-1'><IconHome size={18} />Home</p>
-                            <h6 className='font-bold text-xl text-gray-600'>Dasboard</h6>
+                            <h6 className='font-bold text-lg text-gray-600'>Dasboard</h6>
                         </div>
                     </div>
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import Admin from '@/layouts/Admin'
 import { Card } from '@/components/ui/card'
-import { IconBackpack, IconChevronRight, IconHome, IconUserPlus } from '@tabler/icons-react'
+import {  IconChevronRight, IconHome } from '@tabler/icons-react'
 import { Link } from 'react-router-dom'
 
 export default function Permission() {
@@ -25,7 +25,7 @@ export default function Permission() {
                             </Link>
                         </div>
                         <div>
-                            <h6 className='font-bold'>Permision Pengguna</h6>
+                            <h6 className='font-bold text-gray-600 text-lg'>Permision Pengguna</h6>
                         </div>
                     </div>
                 </div>

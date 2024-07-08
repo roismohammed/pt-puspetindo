@@ -29,7 +29,7 @@ export default function Users() {
             <Link to={'/'}>
               <p className='text-sm flex gap-1'><IconHome size={18} />Home</p>
             </Link>
-            <h6>Data Kontak</h6>
+            <h6 className='text-gray-600 text-lg font-bold'>Data Kontak</h6>
           </div>
 
           <div>
