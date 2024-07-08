@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { IconBuildingBank, IconBuildingStore, IconDashboard, IconDeviceLaptop, IconLogin, IconReportAnalytics, IconReportMoney, IconSettings, IconShoppingBag, IconUser } from '@tabler/icons-react';
+import { IconBuildingBank, IconBuildingStore, IconDashboard, IconDeviceLaptop, IconLogin, IconReportAnalytics, IconReportMoney, IconSettings, IconShoppingBag, IconUser, IconUsers } from '@tabler/icons-react';
 
 export default function Sidebar() {
   const location = useLocation();
@@ -65,16 +65,20 @@ export default function Sidebar() {
 
         </span>
 
-        <span className="flex text-xm flex-col items-start gap-1 rounded-lg px-2 py-2 text-muted-foreground transition-all">
+
+        {/* <span className="flex text-xm flex-col items-start gap-1 rounded-lg px-2 py-2 text-muted-foreground transition-all">
           Pengguna
           <Link
             to="/users"
-            className={`pl-2 hover:text-white rounded-sm hover:bg-black p-1 w-full mt-2 gap-2 text-md flex ${isActive('/users')}`}
+            className={`pl-2 hover:text-white rounded-sm hover:bg-black p-1 w-full mt-2 gap-2 text-md flex ${isActive('/pembelian')}`}
           >
-            <IconUser size={21} />
-            Users
+            <IconUsers size={21} />
+            Users Management
           </Link>
-        </span>
+
+        </span> */}
+
+    
 
         <span className="flex text-xm flex-col items-start gap-1 rounded-lg px-2 py-2 text-muted-foreground transition-all">
           Sistem
@@ -87,6 +91,16 @@ export default function Sidebar() {
           </Link>
 
           <Link
+            to="/users"
+            className={`pl-2 hover:text-white rounded-sm hover:bg-black p-1 w-full text-black gap-2 text-1sm flex ${isActive('/analist')}`}
+          >
+            <IconUsers size={21} />
+            Pengguna
+          </Link>
+
+
+
+          <Link
             to="#"
             className={`pl-2 hover:text-white rounded-sm hover:bg-black p-1 w-full text-black gap-2 text-1sm flex ${isActive('/analist')}`}
           >
@@ -94,13 +108,6 @@ export default function Sidebar() {
             Sistem
           </Link>
 
-          <Link
-            to="/login"
-            className={`pl-2 hover:text-white rounded-sm hover:bg-black p-1 w-full text-black gap-2 text-1sm flex ${isActive('/analist')}`}
-          >
-            <IconLogin size={21} />
-            Login
-          </Link>
         </span>
       </nav>
     </Fragment>

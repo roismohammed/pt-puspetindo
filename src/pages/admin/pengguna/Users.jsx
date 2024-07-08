@@ -1,28 +1,20 @@
 import Admin from '@/layouts/Admin';
 import React, { useEffect, useState } from 'react';
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import { IconHome, IconSearch, IconUserPlus } from '@tabler/icons-react';
+import { IconHome, IconKey, IconLock, IconSearch, IconUserPlus } from '@tabler/icons-react';
 import { Input } from '@/components/ui/input';
 import axios from 'axios';
 
 export default function Users() {
-  const [data, setData] = useState([]);
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
     axios.get('https://dummyjson.com/users')
       .then((res) => {
-        setData(res.data.users);
+        setUsers(res.data.users);
       })
       .catch((error) => {
         console.error('Error fetching users:', error);
@@ -34,7 +26,9 @@ export default function Users() {
       <Card className="p-5">
         <div className='flex justify-between'>
           <div>
-            <p className='text-sm flex gap-1'><IconHome size={18} />Home</p>
+            <Link to={'/'}>
+              <p className='text-sm flex gap-1'><IconHome size={18} />Home</p>
+            </Link>
             <h6>Data Kontak</h6>
           </div>
 
@@ -42,7 +36,7 @@ export default function Users() {
             <Link to={'/add-users'}>
               <Button className="bg-slate-900 text-white gap-2 hover:bg-slate-800 hover:text-white" variant="outline">
                 <IconUserPlus size={18} />
-                Buat Kontak
+                Tambah Pengguna
               </Button>
             </Link>
           </div>
@@ -57,7 +51,7 @@ export default function Users() {
           </div>
 
           <div>
-            <Link>
+            <Link to="/">
               <Button className="bg-slate-100 text-white gap-2 hover:bg-slate-800 hover:text-white" variant="outline">
                 <IconUserPlus size={18} />
                 Kolom
@@ -67,26 +61,38 @@ export default function Users() {
         </div>
 
         <Card className="mt-3">
-          <Table>
-            <TableHeader className='bg-slate-100'>
+          <Table className="container">
+            <TableHeader className='bg-slate-200 w-full'>
               <TableRow>
-                <TableHead className="w-[100px]">ID</TableHead>
-                <TableHead>First Name</TableHead>
-                <TableHead>Last Name</TableHead>
-                <TableHead>Age</TableHead>
-                <TableHead>Gender</TableHead>
-                <TableHead>Email</TableHead>
+                <TableHead>Nama</TableHead>
+                <TableHead className="hidden sm:table-cell">Departemen</TableHead>
+                <TableHead className="hidden sm:table-cell">Jabatan</TableHead>
+                <TableHead className="hidden sm:table-cell">Status</TableHead>
+                <TableHead className="hidden sm:table-cell">Tanggal Di buat</TableHead>
+                <TableHead className="hidden md:table-cell text-right">Aksi</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
-              {data.map((user) => (
-                <TableRow key={user.id}>
-                  <TableCell className="font-medium">{user.id}</TableCell>
-                  <TableCell>{user.firstName}</TableCell>
-                  <TableCell>{user.lastName}</TableCell>
-                  <TableCell>{user.age}</TableCell>
-                  <TableCell>{user.gender}</TableCell>
-                  <TableCell>{user.email}</TableCell>
+              {users.map((item) => (
+                <TableRow key={item.id}>
+                  <TableCell>
+                    <div className="font-medium">{item.username}</div>
+                  </TableCell>
+                  <TableCell className="hidden sm:table-cell">Refund</TableCell>
+                  <TableCell className="hidden sm:table-cell">Karyawan</TableCell>
+                  <TableCell className="hidden sm:table-cell items-center justify-center">
+                    <p className="text-xs bg-green-400 rounded-sm py-1 px-2 inline-block">Aktif</p>
+                  </TableCell>
+                  <TableCell>34-03-2024</TableCell>
+                  <TableCell className="flex md:table-cell text-right">
+                    <Link to='/permission'>
+                      <Button className="bg-slate-200 text-sm  gap-2 hover:bg-slate-30
+                      0 " variant="outline">
+                        <IconKey size={18} />
+                        Atur Permission
+                      </Button>
+                    </Link>
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>
