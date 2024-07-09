@@ -78,7 +78,7 @@ export default function Users() {
                   <TableCell>
                     <div className="font-medium">{item.username}</div>
                   </TableCell>
-                  <TableCell className="hidden sm:table-cell">Refund</TableCell>
+                  <TableCell className="hidden sm:table-cell">Departemen kamar 1 lantai 3 yeeeeee</TableCell>
                   <TableCell className="hidden sm:table-cell">Karyawan</TableCell>
                   <TableCell className="hidden sm:table-cell items-center justify-center">
                     <p className="text-xs bg-green-400 rounded-sm py-1 px-2 inline-block">Aktif</p>
@@ -86,7 +86,7 @@ export default function Users() {
                   <TableCell>34-03-2024</TableCell>
                   <TableCell className="flex md:table-cell text-right">
                     <Link to='/permission'>
-                      <Button className="bg-slate-200 text-sm  gap-2 hover:bg-slate-30
+                      <Button className="bg-slate-200 px-2 py-1 text-xs  gap-2 hover:bg-slate-30
                       0 " variant="outline">
                         <IconKey size={18} />
                         Atur Permission
